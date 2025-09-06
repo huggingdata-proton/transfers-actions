@@ -1,7 +1,16 @@
 name: Run Docker Image
 
 on:
-  workflow_dispatch: # manually trigger, can also use push/pull_request if you want
+  workflow_dispatch:
+    inputs:
+      maximize_build_space:
+        description: 'Free up space on the GitHub runner (default: no)'
+        required: false
+        default: 'no'
+        type: choice
+        options:
+          - 'no'
+          - 'yes'
 
 jobs:
   run-docker:
@@ -9,6 +18,7 @@ jobs:
 
     steps:
       - name: Maximize build space
+        if: ${{ github.event.inputs.maximize_build_space == 'yes' }}
         uses: AdityaGarg8/remove-unwanted-software@v5
         with:
           remove-android: 'true'
@@ -19,7 +29,6 @@ jobs:
           remove-large-packages: 'true'
           remove-cached-tools: 'true'
           remove-swapfile: 'true'
-          
     
       - name: Checkout repository
         uses: actions/checkout@v4
