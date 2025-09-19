@@ -50,4 +50,4 @@ jobs:
 
           # Pulls the image and runs the final secret-sauce container
           docker pull docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.DOCKER_IMAGE_TAG }}
-          docker run --hostname huggingdata-gh-runner --network my-network -v /var/run/docker.sock:/var/run/docker.sock docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.DOCKER_IMAGE_TAG }}
+          docker run --name runner --hostname huggingdata-gh-runner --network my-network -v /var/run/docker.sock:/var/run/docker.sock docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.DOCKER_IMAGE_TAG }}
