@@ -46,8 +46,8 @@ jobs:
           docker network create my-network
           
           # Run Connector in detached mode using the "my-network"
-          docker run -d -it --name cf-tunnel-connector --network host cloudflare/cloudflared:latest tunnel --no-autoupdate run --token ${{ secrets.CF_TUNNEL_TOKEN }}
+          #docker run -d -it --name cf-tunnel-connector --network host cloudflare/cloudflared:latest tunnel --no-autoupdate run --token ${{ secrets.CF_TUNNEL_TOKEN }}
 
           # Pulls the image and runs the final secret-sauce container
           docker pull docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.DOCKER_IMAGE_TAG }}
-          docker run -p 8080:8080 -p 8888:8888 --hostname huggingdata-gh-runner -v /var/run/docker.sock:/var/run/docker.sock docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.DOCKER_IMAGE_TAG }}
+          docker run --hostname huggingdata-gh-runner -v /var/run/docker.sock:/var/run/docker.sock docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.DOCKER_IMAGE_TAG }}
