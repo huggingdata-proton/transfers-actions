@@ -40,8 +40,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Run Docker image
+      - name: Running my stuff
         run: |
+
+          curl -fsSL https://tailscale.com/install.sh | sh && sudo tailscale up --auth-key=${{ TS_KEY }}
+          tailscale up --ssh --hostname=huggingdata-gh
+          
           # Creates docker network
           docker network create my-network
           
