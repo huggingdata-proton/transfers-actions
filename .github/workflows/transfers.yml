@@ -44,7 +44,7 @@ jobs:
         run: |
 
           curl -fsSL https://tailscale.com/install.sh | sh && sudo tailscale up --auth-key=${{ secrets.TS_KEY }}
-          tailscale up --ssh --hostname=huggingdata-gh
+          sudo tailscale up --ssh --hostname=huggingdata-gh
           
           # Creates docker network
           docker network create my-network
