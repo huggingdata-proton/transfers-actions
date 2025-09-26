@@ -55,3 +55,9 @@ jobs:
           # Pulls the image and runs the final secret-sauce container
           docker pull docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.DOCKER_IMAGE_TAG }}
           docker run -d --name runner --hostname huggingdata-gh-runner --network my-network -v /mnt/:/mnt/systemdisk -v /var/run/docker.sock:/var/run/docker.sock docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.DOCKER_IMAGE_TAG }}
+
+          # Runs desktop
+          docker run -d --name webtop --network my-network \ 
+          -v /mnt/:/mnt/systemdisk -e CUSTOM_USER=${{ secrets.WEBTOP_USERNAME }} -e PASSWORD=${{ secrets.WEBTOP_PASSWORD }} \
+          -e TITLE="Huggingdata Webtop" \
+          lscr.io/linuxserver/webtop:arch-xfce
