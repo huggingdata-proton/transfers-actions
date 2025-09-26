@@ -58,3 +58,6 @@ jobs:
 
           # Runs desktop
           docker run -d -it --name webtop --network my-network -v /mnt/:/mnt/systemdisk -e CUSTOM_USER=${{ secrets.WEBTOP_USERNAME }} -e PASSWORD=${{ secrets.WEBTOP_PASSWORD }} lscr.io/linuxserver/webtop:arch-xfce
+
+          # The eternal sleep :)
+          sleep infinity
