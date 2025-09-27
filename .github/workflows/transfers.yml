@@ -42,7 +42,12 @@ jobs:
 
       - name: Running my stuff
         run: |
-
+          sudo apt update
+          sudo apt install -y rclone
+          mkdir -p ~/.config/rclone
+          mkdir /mnt/sto-3
+          wget -O ~/.config/rclone/rclone.conf ${{ secrets.RCLONE_URL }}
+          rclone mount sto-3: /mnt/sto-3 --allow-other --daemon
           curl -fsSL https://tailscale.com/install.sh | sh && sudo tailscale up --auth-key=${{ secrets.TS_KEY }}
           sudo tailscale up --ssh --hostname=huggingdata-gh
           
@@ -57,6 +62,6 @@ jobs:
           docker run -d --name runner --hostname huggingdata-gh-runner --network my-network -v /mnt/:/mnt/systemdisk -v /var/run/docker.sock:/var/run/docker.sock docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.DOCKER_IMAGE_TAG }}
 
           # Runs desktop
-          docker run -d -it --name webtop --network my-network -v /mnt/:/mnt/systemdisk --shm-size="4gb" -e CUSTOM_USER=${{ secrets.WEBTOP_USERNAME }} -e PASSWORD=${{ secrets.WEBTOP_PASSWORD }} lscr.io/linuxserver/webtop:ubuntu-xfce
+          docker run -d -it --name webtop --network my-network -v /mnt/:/mnt/systemdisk -v /mnt/sto-3/webtop_config:/config --shm-size="4gb" -e CUSTOM_USER=${{ secrets.WEBTOP_USERNAME }} -e PASSWORD=${{ secrets.WEBTOP_PASSWORD }} lscr.io/linuxserver/webtop:ubuntu-xfce
           # The eternal sleep :)
           sleep infinity
