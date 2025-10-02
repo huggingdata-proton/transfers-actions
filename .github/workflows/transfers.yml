@@ -65,6 +65,7 @@ jobs:
           docker run -d -it --name webtop --network my-network -v /mnt/:/mnt/systemdisk -v /mnt/sto-3/webtop_config:/config --shm-size="4gb" -e CUSTOM_USER=${{ secrets.WEBTOP_USERNAME }} -e PASSWORD=${{ secrets.WEBTOP_PASSWORD }} lscr.io/linuxserver/webtop:ubuntu-xfce
 
           # Exatorrent
+          sudo mkdir -p /mnt/systemdisk/exadir_downloads
           docker run -d -it --name exatorrent --network my-network  -v /mnt/systemdisk/exadir_downloads:/exa/exadir ghcr.io/varbhat/exatorrent:latest
           
           # The eternal sleep :)
