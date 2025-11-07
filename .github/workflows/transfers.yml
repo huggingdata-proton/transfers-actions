@@ -67,7 +67,8 @@ jobs:
           # Exatorrent
           sudo mkdir -p /mnt/systemdisk/exadir_downloads
           sudo chmod -R 777 /mnt/systemdisk/exadir_downloads
-          docker run -d -it --name exatorrent --network my-network  -v /mnt/systemdisk/exadir_downloads:/exa/exadir ghcr.io/varbhat/exatorrent:latest
+          # docker run -d -it --name exatorrent --network my-network  -v /mnt/systemdisk/exadir_downloads:/exa/exadir ghcr.io/varbhat/exatorrent:latest
+          docker run -d -it --name cloud-torrent --network my-network  -v /mnt/systemdisk/cloud_torrent_downloads:/downloads jpillora/cloud-torrent
           
           # The eternal sleep :)
           sleep infinity
