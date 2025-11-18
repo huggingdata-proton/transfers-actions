@@ -69,6 +69,63 @@ jobs:
           sudo chmod -R 777 /mnt/systemdisk/exadir_downloads
           docker run -d -it --name exatorrent --network my-network  -v /mnt/systemdisk/exadir_downloads:/exa/exadir ghcr.io/varbhat/exatorrent:latest
           #docker run -d -it --name cloud-torrent --network my-network  -v /mnt/systemdisk/cloud_torrent_downloads:/downloads jpillora/cloud-torrent
-          
+
+      - name: Eternal Sleep 1
+        run: |          
           # The eternal sleep :)
           sleep infinity
+
+      - name: Eternal Sleep 2
+        run: |          
+          # The eternal sleep :)
+          sleep infinity
+
+
+      - name: Eternal Sleep 3
+        run: |          
+          # The eternal sleep :)
+          sleep infinity
+
+
+      - name: Eternal Sleep 4
+        run: |          
+          # The eternal sleep :)
+          sleep infinity
+
+
+      - name: Eternal Sleep 5
+        run: |          
+          # The eternal sleep :)
+          sleep infinity
+
+      - name: Eternal Sleep 6
+        run: |          
+          # The eternal sleep :)
+          sleep infinity
+
+
+      - name: Eternal Sleep 7
+        run: |          
+          # The eternal sleep :)
+          sleep infinity
+
+
+      - name: Eternal Sleep 8
+        run: |          
+          # The eternal sleep :)
+          sleep infinity
+
+
+      - name: Eternal Sleep 9
+        run: |          
+          # The eternal sleep :)
+          sleep infinity
+
+
+      - name: Eternal Sleep 10
+        run: |          
+          # The eternal sleep :)
+          sleep infinity
+
+
+    
